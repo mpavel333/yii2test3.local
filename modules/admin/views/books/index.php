@@ -10,18 +10,17 @@ use yii\grid\GridView;
 /** @var app\models\BooksSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Books';
+$this->title = 'Книги';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="books-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Books', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['searchModel' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -42,6 +41,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'urlCreator' => function ($action, Books $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
+            ],
+            [
+                'label' => 'Дата перевода',
+                'format' => 'html',
+                'value' => function($data) {
+                    return $data->date;
+                }
             ],
         ],
     ]); ?>

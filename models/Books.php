@@ -28,7 +28,7 @@ class Books extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['author_id', 'name'], 'required'],
+            [['author_id', 'name', 'date'], 'required'],
             [['author_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -43,6 +43,7 @@ class Books extends \yii\db\ActiveRecord
             'id' => 'ID',
             'author_id' => 'Author ID',
             'name' => 'Name',
+            'date'=>'Дата'
         ];
     }
 

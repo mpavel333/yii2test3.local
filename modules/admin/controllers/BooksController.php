@@ -43,7 +43,7 @@ class BooksController extends Controller
     {
         $searchModel = new BooksSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -97,6 +97,7 @@ class BooksController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $authors = Authors::find()->all();
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -104,6 +105,7 @@ class BooksController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'authors' => $authors
         ]);
     }
 

@@ -14,6 +14,9 @@ class BooksSearch extends Books
     /**
      * {@inheritdoc}
      */
+    
+    public $author_name;
+    
     public function rules()
     {
         return [
@@ -40,7 +43,6 @@ class BooksSearch extends Books
      */
     public function search($params)
     {
-        //print_r($params);
 
         $query = Books::find();
 
@@ -60,9 +62,26 @@ class BooksSearch extends Books
 
         // фильтрация по фамилии
         if(isset($params['author_name']) && !empty($params['author_name'])){
-            $query->where(['like', 'authors.name', '%'.$params['author_name'].'%', false]);
+            $query->filterWhere(['like', 'authors.name', '%'.$params['author_name'].'%', false]);
         }
-
+        
+        if(isset($params['date']) && !empty($params['date'])){
+            $query->filterWhere(['=', 'date', $params['date']]);
+        }  
+        
+        //https://www.w3schools.com/sql/func_mysql_dayofweek.asp
+        //выбрать только выходные дни
+        
+        if(isset($params['weekends']) && $params['weekends']==1){
+            
+            $query->andFilterWhere(['or',
+                ['DAYOFWEEK(date)'=>1],
+                ['DAYOFWEEK(date)'=>7]
+            ]);            
+  
+        }  
+        
+        //echo $query->createCommand()->getRawSql();
 
         return $dataProvider;
     }

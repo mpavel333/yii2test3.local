@@ -41,9 +41,9 @@ use yii\bootstrap4\Html;
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     
-                    ['label' => 'Authors', 'url' => ['authors/index'], 'icon' => 'dot-circle'],
+                    ['label' => 'Авторы', 'url' => ['authors/index'], 'icon' => 'dot-circle'],
                     
-                    ['label' => 'Books', 'url' => ['books/index'], 'icon' => 'dot-circle'],
+                    ['label' => 'Книги', 'url' => ['books/index'], 'icon' => 'dot-circle'],
 
                    
                     

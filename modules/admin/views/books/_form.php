@@ -18,6 +18,8 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'author_id')->dropDownList(ArrayHelper::map($authors, 'id', 'name'))->label('Выберите имя автора'); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'date')->input('date')  ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
